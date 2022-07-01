@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/instragram/static/css/main.ba8b0917.css",
+    "main.js": "/instragram/static/js/main.4d4ae2dc.js",
+    "static/js/787.c94e0ab0.chunk.js": "/instragram/static/js/787.c94e0ab0.chunk.js",
+    "static/media/prop.jpg": "/instragram/static/media/prop.a862bf661e8d9d114d73.jpg",
+    "static/media/Instagram_logo.svg.png": "/instragram/static/media/Instagram_logo.svg.9207edd918cb282b66cb.png",
+    "static/media/dot.svg": "/instragram/static/media/dot.47158f33ecec8a16908970da260eb365.svg",
+    "static/media/new.svg": "/instragram/static/media/new.e00072bda02f79b13fcc805a9a6a5cc1.svg",
+    "static/media/notification.svg": "/instragram/static/media/notification.5beab48aa643e9ff4c5393f302fb3dca.svg",
+    "index.html": "/instragram/index.html",
+    "static/media/chat.svg": "/instragram/static/media/chat.0eb546fa09e16679a625bc99e1850f2d.svg",
+    "static/media/find.svg": "/instragram/static/media/find.b3acb7d429b847680b4764f01649dc6c.svg",
+    "static/media/comment.svg": "/instragram/static/media/comment.95ccce546541668fcc76379ecb8ce05d.svg",
+    "static/media/share.svg": "/instragram/static/media/share.9cd5dcdc8344747bce7049486c859444.svg",
+    "static/media/home.svg": "/instragram/static/media/home.e5e96469b17605c8f651b71162c8d2b9.svg",
+    "main.ba8b0917.css.map": "/instragram/static/css/main.ba8b0917.css.map",
+    "main.4d4ae2dc.js.map": "/instragram/static/js/main.4d4ae2dc.js.map",
+    "787.c94e0ab0.chunk.js.map": "/instragram/static/js/787.c94e0ab0.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.ba8b0917.css",
+    "static/js/main.4d4ae2dc.js"
+  ]
+}
