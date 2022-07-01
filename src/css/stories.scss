@@ -1,0 +1,49 @@
+@import './properties';
+
+.stories{
+    display: flex;
+    align-content: center;
+    background-color: $background-white;
+    border: 1px solid $border-color-grey;
+    border-radius: 3px;
+    margin: 2em 0 1.5em 0;
+    height: 7.4em;
+    overflow: hidden;
+
+    .container {
+  
+        overflow-y: hidden;
+        overflow-x: scroll;
+        -ms-overflow-style: none;
+         scrollbar-width: none;
+      }
+      Story {
+        white-space: nowrap;
+      }
+      .container::-webkit-scrollbar { /* WebKit */
+        width: 0;
+        height: 0;
+    }
+    
+}
+
+
+@media only screen and (max-width: 640px) {
+    main .stories{
+     margin: 0 0 0.5em 0;
+     width: 100%;
+     max-width: 500px;
+    }
+    
+  }
+
+// .container {
+//     overflow-y: scroll;
+//     scrollbar-width: none; /* Firefox */
+//     -ms-overflow-style: none;  /* Internet Explorer 10+ */
+// }
+// .container::-webkit-scrollbar { /* WebKit */
+//     width: 0;
+//     height: 0;
+// }
+
