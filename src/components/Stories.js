@@ -1,6 +1,6 @@
 import "../css/stories.scss";
 import Story from "./Story";
-import HorizontalScroll from 'react-scroll-horizontal'
+
 
 function Stories() {
   return (

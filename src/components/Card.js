@@ -1,7 +1,7 @@
 import React from 'react'
 import "../css/card.scss";
 import CardMenu from './CardMenu';
-import Commnet from './Commnet';
+import Comment from './Comment';
 import Profile from './Profile'; 
 import {ReactComponent as CardButton} from "../img/dot.svg"
 
@@ -32,7 +32,7 @@ function Card(props) {
         <div className="comments">
             {comments.map((comment) =>{
                 return(
-                    <Commnet 
+                    <Comment 
                     key={comment.id}
                     accountName={comment.username}
                     comment={comment.text}

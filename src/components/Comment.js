@@ -2,7 +2,7 @@ import React from 'react'
 import "../css/comment.scss"
 
 
-function Commnet(props) {
+function Comment(props) {
     const {accountName, comment} = props;
   return (
     <div className='commentContainer'>
@@ -12,4 +12,4 @@ function Commnet(props) {
   )
 }
 
-export default Commnet
+export default Comment
