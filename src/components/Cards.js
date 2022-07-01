@@ -18,7 +18,7 @@ function Cards() {
       <Card
         accountName="this is it"
         storyBorder={true}
-        image={`https://picsum.photos/id/${ getRandomInt(1000,1100)}/200/300`}
+        image={`https://picsum.photos/id/${ getRandomInt(1000,1100)}/367/367`}
         comments={commentsOne}
         likedByText="This like"
         likedByNumber={20}
@@ -27,7 +27,7 @@ function Cards() {
          <Card
         accountName="this is it"
         storyBorder={true}
-        image={`https://picsum.photos/id/${ getRandomInt(1000,1100)}/200/300`}
+        image={`https://picsum.photos/id/${ getRandomInt(1000,1100)}/367/367`}
         comments={commentsTwo}
         likedByText="This like"
         likedByNumber={20}
@@ -36,7 +36,7 @@ function Cards() {
          <Card
         accountName="this is it"
         storyBorder={true}
-        image={`https://picsum.photos/id/${ getRandomInt(1000,1100)}/200/300`}
+        image={`https://picsum.photos/id/${ getRandomInt(1000,1100)}/367/367`}
         comments={commentsThree}
         likedByText="This like"
         likedByNumber={20}
