@@ -1,10 +1,10 @@
 @import "./properties";
 
-.card {
+._card {
     border: 1px solid $border-color-grey;
     background-color: $background-white;
     margin-bottom: 3.5em;
-    border-radius: 3px;
+    border-radius: 0.75em !important;
 
     header {
         display: flex;
@@ -25,31 +25,47 @@
         }
     }
 
+    .captionContainer {
+        display: flex;
+        padding-left: 1em;
+        font-size: 1em;
+        margin-bottom: 0.4em;
+
+        .username{
+            font-weight: 600;
+        }
+
+        .caption{
+            margin-left: 0.5em;
+        }
+
+    }
 
     .cardImage {
         width: 100%;
         display: block;
+
     }
 
     .likedBy {
         display: flex;
-        padding-left: 1em;
+        padding-left: 0.75em;
 
 
         span {
             font-size: 0.75em;
             margin-left: 0.5em;
-            padding-top: 0.5em;
+            padding-top: 0.3em;
         }
 
 
     }
 
-    .comment{
-        margin-bottom: 0.75em;
+    .comments {
+        padding-left: 1.5em;
     }
 
-    .timePosted{
+    .timePosted {
         font-size: 0.6em;
         padding-left: 2em;
         padding-bottom: 1em;
@@ -57,18 +73,18 @@
         border-bottom: 1px solid $border-color-grey-secondary;
     }
 
-    .addComment{
+    .addComment {
         display: flex;
         justify-content: space-between;
         font-size: 0.85em;
         padding: 1.5em 1.25em;
 
-        .commentText{
+        .commentText {
             color: $font-color-secondary;
 
         }
 
-        .postText{
+        .postText {
             color: $link-color-secondary;
         }
     }
@@ -77,20 +93,19 @@
 
 
 @media only screen and (max-width: 640px) {
-    .card{
-        
-        background-color: $background-grey !important;
+    ._card {
+        background-color: $background-grey  !important;
         margin-bottom: 0.75em;
         border: none !important;
 
-        .addComment{
+        .addComment {
             display: none;
         }
 
-        .timePosted{
+        .timePosted {
             border: none;
         }
-    
+
     }
-    
+
 }

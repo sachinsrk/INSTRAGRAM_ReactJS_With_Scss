@@ -1,13 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import ThoughtContext from "./thoughtContext";
 
 
 const ThoughtState = (props) => {
-    const state = {
-        "name":"gfgf"
-    }
+  const [state, setState] = useState(false)
   return (
-    <ThoughtContext.Provider value={state}>
+    <ThoughtContext.Provider value={{state,setState}}>
       {props.children}
     </ThoughtContext.Provider>
   )

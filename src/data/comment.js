@@ -65,9 +65,9 @@ const commentsThree = [
     username: "mach_franky",
   },
 ];
-
+// eslint-disable-next-line
 export default {
     commentsOne,
     commentsTwo,
     commentsThree
-};
+}

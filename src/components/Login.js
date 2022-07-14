@@ -1,11 +1,11 @@
 import React,{useContext} from 'react'
 import { Form, Button, Row, Col, Card } from 'react-bootstrap';
-import thoughtContext from '../context/thought/thoughtContext';
+// import thoughtContext from '../context/thought/thoughtContext';
 import { Link } from "react-router-dom"
 import '../css/login.scss'
 
 const Login = () => {
-    const a = useContext(thoughtContext)
+    
     return (
         <>
             <div className='App-header '>

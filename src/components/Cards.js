@@ -1,47 +1,58 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { db } from "../config/db";
+import { collection, getDocs, onSnapshot, query } from "@firebase/firestore";
+
 import "../css/cards.scss";
 import Stories from "./Stories";
-import comment from "../data/comment";
+// import comment from "../data/comment";
 import Card from "./Card";
+// duplicate
 
 function Cards() {
-  const { commentsOne, commentsTwo, commentsThree } = comment;
-  function getRandomInt(min, max){
+
+  const [posts, setPosts] = useState([]);
+  const ref = query(collection(db, "posts"));
+  function getData() {
+    onSnapshot(ref, (q) => {
+      const post = [];
+      q.forEach((doc) => {
+        // push item on loop
+        post.push(doc);
+      });
+      //set item on posts
+      setPosts(post);
+    });
+  }
+  useEffect(() => {
+    getData();
+  }, []);
+
+  function getRandomInt(min, max) {
     min = Math.ceil(min);
     max = Math.floor(max);
-    return Math.floor(Math.random() * (max - min + 1)) + min
-}
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+  }
 
   return (
     <div className="cards">
+      {/* stories from componenets */}
       <Stories />
-      <Card
-        accountName="this is it"
-        storyBorder={true}
-        image={`https://picsum.photos/id/${ getRandomInt(1000,1100)}/367/367`}
-        comments={commentsOne}
-        likedByText="This like"
-        likedByNumber={20}
-        hours={16}
-      />
-         <Card
-        accountName="this is it"
-        storyBorder={true}
-        image={`https://picsum.photos/id/${ getRandomInt(1000,1100)}/367/367`}
-        comments={commentsTwo}
-        likedByText="This like"
-        likedByNumber={20}
-        hours={10}
-      />
-         <Card
-        accountName="this is it"
-        storyBorder={true}
-        image={`https://picsum.photos/id/${ getRandomInt(1000,1100)}/367/367`}
-        comments={commentsThree}
-        likedByText="This like"
-        likedByNumber={20}
-        hours={1}
-      />
+      { posts.map((post) => (
+       
+          (  <Card
+              key={post.id}
+              caption={post.data().caption}
+              username={post.data().username}
+              image={post.data().image}
+              storyBorder={post.data().storyBorder}
+              comments={post.data().comments}
+              likedByText={post.data().likedByText}
+              likedByNumber={post.data().likedByNumber}
+              hours={post.data().hours}
+            />)
+           
+          ))
+        }
     </div>
   );
 }

@@ -1,9 +1,9 @@
-import React from 'react'
-import "../css/comment.scss"
-
+import "../css/comment.scss";
 
 function Comment(props) {
+ 
     const {accountName, comment} = props;
+ 
   return (
     <div className='commentContainer'>
       <div className="accountName">{accountName}</div>
@@ -12,4 +12,4 @@ function Comment(props) {
   )
 }
 
-export default Comment
+export default Comment;

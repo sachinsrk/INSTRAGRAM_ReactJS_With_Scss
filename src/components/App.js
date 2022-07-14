@@ -11,7 +11,7 @@ import '../css/App.scss';
 //   Route,
 //   Link
 // } from "react-router-dom";
-// import ThoughtState from './context/thought/ThoughtState';
+import ThoughtState from '../context/thought/ThoughtState';
 import Navbar from './Navbar';
 import Cards from './Cards';
 import Sidebar from './Sidebar';
@@ -20,7 +20,7 @@ import Sidebar from './Sidebar';
 function App() {
   return (
     <div className='App'>
-      {/* <ThoughtState> */}
+      <ThoughtState>
     
   
         {/* <Router> */}
@@ -43,9 +43,10 @@ function App() {
           </div> */}
         {/* </Router> */}
 
-      {/* </ThoughtState> */}
+      </ThoughtState>
      </div>
   );
 }
 
 export default App;
+
