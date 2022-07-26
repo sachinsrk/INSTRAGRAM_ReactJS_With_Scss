@@ -31,11 +31,11 @@
         font-size: 1em;
         margin-bottom: 0.4em;
 
-        .username{
+        .username {
             font-weight: 600;
         }
 
-        .caption{
+        .caption {
             margin-left: 0.5em;
         }
 
@@ -79,13 +79,29 @@
         font-size: 0.85em;
         padding: 1.5em 1.25em;
 
-        .commentText {
-            color: $font-color-secondary;
 
+        input.commentText {
+            color: $font-color-secondary;
+            width: 100%;
+            min-width: 20rem;
+            border: none;
+            outline: none;
+            font-weight: 400;
+            font-size: 18px;
+            color: #262626;
+            background: none;
         }
+
+        input.commentText ::placeholder {
+            color: #727374;
+        }
+
 
         .postText {
             color: $link-color-secondary;
+            font-size: 18px;
+            font-weight: 400;
+            cursor: pointer;
         }
     }
 

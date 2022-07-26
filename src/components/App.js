@@ -2,49 +2,44 @@
 
 import '../css/App.scss';
 // import Home from './components/Home';
-// import Login from './components/Login';
-// import Signup from './components/Signup';
+import Login from './Login';
+import Signup from './Signup';
 // import { Button, Row, Col } from 'react-bootstrap';
-// import {
-//   BrowserRouter as Router,
-//   Routes,
-//   Route,
-//   Link
-// } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Link
+} from "react-router-dom";
 import ThoughtState from '../context/thought/ThoughtState';
 import Navbar from './Navbar';
-import Cards from './Cards';
-import Sidebar from './Sidebar';
+// import Cards from './Cards';
+// import Sidebar from './Sidebar';
+import Home from './Home';
 
 
 function App() {
   return (
     <div className='App'>
       <ThoughtState>
-    
-  
-        {/* <Router> */}
-        <Navbar/>
-    
-          <main>
-       
-                <div className="container">
-                <Cards/>
-                 <Sidebar/>
-                </div>
-          </main>
 
-          {/* <div className="container">
-            <Routes>
-              <Route exact path="/" element={<Home />} />
-              <Route exact path="/login" element={<Login />} />
-              <Route exact path="/singup" element={<Signup />} />
-            </Routes>
-          </div> */}
-        {/* </Router> */}
+
+        <Router>
+          <Navbar />
+
+
+
+          <Routes>
+            <Route exact path="/" element={ <Home/>} />
+              
+            <Route exact path="/login" element={<Login />} />
+            <Route exact path="/singup" element={<Signup />} />
+          </Routes>
+
+        </Router>
 
       </ThoughtState>
-     </div>
+    </div>
   );
 }
 

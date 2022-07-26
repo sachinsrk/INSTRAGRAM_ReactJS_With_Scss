@@ -1,7 +1,7 @@
 @import "./properties";
 
 .storyBorder{
-    padding: 2px;
+    padding: 2px !important;
     background: linear-gradient(
         200deg,
         $gradient-one 25%,
@@ -9,31 +9,31 @@
         $gradient-three 75%,
         $gradient-four 100%,
 
-    );
-    border-radius:50% ;
+    ) !important;
+    border-radius:50% !important;
 }
 
 .profileIcon{
-    border-radius: 50%;
-    border: 2px solid $background-white;
-    display: block;
+    border-radius: 50% !important;
+    border: 2px solid $background-white !important;
+    display: block !important;
 
     &:hover{
-        cursor: pointer;
+        cursor: pointer !important;
     }
 
    &.small{
-        width: 25px;
-        height: 25px;
+        width: 25px !important;
+        height: 25px !important;
     } 
 
     &.medium{
-        width: 35px;
-        height: 35px;
+        width: 35px !important;
+        height: 35px !important;
     }
 
     &.big{
-        width: 60px;
-        height: 60px;
+        width: 60px !important;
+        height: 60px !important;
     }
 }

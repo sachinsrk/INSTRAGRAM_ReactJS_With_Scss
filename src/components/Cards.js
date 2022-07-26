@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { db } from "../config/db";
-import { collection, getDocs, onSnapshot, query } from "@firebase/firestore";
+import { collection, getDocs, onSnapshot, query , orderBy} from "@firebase/firestore";
 
 import "../css/cards.scss";
 import Stories from "./Stories";
@@ -11,7 +11,7 @@ import Card from "./Card";
 function Cards() {
 
   const [posts, setPosts] = useState([]);
-  const ref = query(collection(db, "posts"));
+  const ref = query(collection(db, "posts"), orderBy("timestamp", "desc"));
   function getData() {
     onSnapshot(ref, (q) => {
       const post = [];

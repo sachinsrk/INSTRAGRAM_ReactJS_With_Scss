@@ -4,6 +4,7 @@ import CardMenu from "./CardMenu";
 import Comment from "./Comment";
 import Profile from "./Profile";
 import { ReactComponent as CardButton } from "../img/dot.svg";
+import { useState } from "react";
 
 function Card(props) {
   const {
@@ -17,7 +18,9 @@ function Card(props) {
     likedByNumber,
     hours,
   } = props;
+  const [comment, setComment] = useState()
   return (
+
     <div className="_card">
       <header>
         <Profile
@@ -38,7 +41,7 @@ function Card(props) {
         </span>
       </div>
       <div className="captionContainer">
-       <div className="username">{username}</div>
+        <div className="username">{username}</div>
         <div className="caption">{caption}</div>
       </div>
       <div className="comments">{comments}</div>
@@ -56,8 +59,16 @@ function Card(props) {
         </div> */}
       <div className="timePosted">{hours} HOURS AGO</div>
       <div className="addComment">
-        <div className="commentText">Add a comment...</div>
-        <div className="postText">Post</div>
+        <input type="text"
+          className="commentText "
+          placeholder="Add a comment..." value={comment} onChange={(e) => { e.preventDefault(); setComment(e.target.value) }}>
+
+        </input>
+        {comment ?
+          <div className="postText" onClick={{}} style={{ color: '#0095f6' }}>Post</div> :
+          <div className="postText">Post</div>
+        }
+
       </div>
     </div>
   );

@@ -1,11 +1,54 @@
-import React,{useContext} from 'react'
+import React,{useContext, useEffect} from 'react'
 import { Form, Button, Row, Col, Card } from 'react-bootstrap';
-// import thoughtContext from '../context/thought/thoughtContext';
-import { Link } from "react-router-dom"
+import thoughtContext from '../context/thought/thoughtContext';
+import { db, auth } from '../config/db';
+import { getAuth, onAuthStateChanged, signInWithEmailAndPassword } from "firebase/auth";
+import { Link, useNavigate } from "react-router-dom"
 import '../css/login.scss'
+import { useState } from 'react';
 
 const Login = () => {
-    
+    const [email,setEmail]= useState()
+    const [password, setPassword]= useState()
+      const navigate = useNavigate()
+    const context = useContext(thoughtContext)
+    const {user, setUser} = context; 
+    useEffect(()=>{
+        if(user){
+            
+            navigate("/")
+        }
+    },[user])
+    useEffect(() => {
+        const unsub =  onAuthStateChanged(auth, (authUser) => {
+              if (authUser) {
+                  console.log(authUser)
+                  setUser(authUser);
+  
+             
+              } else {
+                  setUser(null)
+              }
+          });
+  
+          return () => {
+              unsub();
+          }
+         
+      }, [user])
+    const logIn = (e) =>{
+        e.preventDefault();
+        signInWithEmailAndPassword(auth, email, password)
+        .then((userCredential) => {
+         
+            setUser(userCredential.user);
+         
+        })
+        .catch((error) => {
+          const errorMessage = error.message;
+          console.log(errorMessage)
+        });
+    }
     return (
         <>
             <div className='App-header '>
@@ -20,12 +63,12 @@ const Login = () => {
                             </center>
                         </div>
                         <Form>
-                            <Form.Group as={Row} className="mb-3 text-black-50" controlId="formPlaintextEmail">
+                        <Form.Group as={Row} className="mb-3 text-black-50" controlId="formPlaintextEmail">
                                 <Form.Label column   >
                                     Email
                                 </Form.Label>
                                 <Col >
-                                    <Form.Control type="email" placeholder="example@email.com" />
+                                    <Form.Control type="email" placeholder="example@email.com" value={email} onChange={(e) => { setEmail(e.target.value) }} />
                                 </Col>
                             </Form.Group>
 
@@ -34,7 +77,7 @@ const Login = () => {
                                     Password
                                 </Form.Label>
                                 <Col >
-                                    <Form.Control type="password" placeholder="Password" />
+                                    <Form.Control type="password" placeholder="Password" value={password} onChange={(e) => { setPassword(e.target.value) }} />
                                 </Col>
                             </Form.Group>
                             <Form.Group as={Row} className="mb-2 text-black-50 my-4" >
@@ -46,7 +89,7 @@ const Login = () => {
                         </Form>
                         <div className='container my-2'>
                             <center>
-                            <Button variant="danger"> Sign In </Button>
+                            <Button variant="danger" onClick={logIn}> Log In </Button>
                             </center>
                         </div>
                     </Card.Body>
