@@ -1,0 +1,73 @@
+header {
+  
+
+  .container {
+    max-width: 45.5rem;
+    margin: 0 auto;
+    padding: 0 2rem;
+
+    .profilep {
+      padding: 5rem 0;
+      &::after{
+        content:" ";
+        display: -webkit-inline-flex;
+        clear: both;
+      }
+      .profile-image {
+        float: left;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-right: 3em;
+        .profileIcon.big {
+          width: 10rem !important;
+          height: 10rem !important;
+        }
+      }
+      // .profile-user-settings{
+      // // .profile-stats,
+      // // .profile-bio {
+      
+      // }
+      .profile-user-settings{
+        display: -webkit-inline-box;
+        .btn{
+          margin-right: 0.5em;
+        }
+        .profile-settings-btn {
+        
+            margin-right: 0.5em;
+        }
+        .porofile-user-name{
+          margin-right: 0.5em !important;
+          font-size: 3rem;
+          font-weight: 300;
+        }
+      }
+      .profile-stats {
+        margin-top: 1em;
+       font-size: 1.2em !important;
+
+        li {
+          display: inline-block;
+          line-height: 1.5;
+          margin-right: 4rem;
+          cursor: pointer;
+
+          &:last-of-type {
+            margin-right: 0;
+          }
+        }
+      }
+      .profile-bio {
+        font-size: 1.3rem;
+        font-weight: 400;
+        line-height: 1;
+        margin-top: 2rem;
+      }
+
+      
+    }
+  }
+
+}

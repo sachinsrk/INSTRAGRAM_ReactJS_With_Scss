@@ -16,6 +16,8 @@ import Navbar from './Navbar';
 // import Cards from './Cards';
 // import Sidebar from './Sidebar';
 import Home from './Home';
+import ProfilePage from './ProfilePage';
+
 
 
 function App() {
@@ -34,6 +36,8 @@ function App() {
               
             <Route exact path="/login" element={<Login />} />
             <Route exact path="/singup" element={<Signup />} />
+            <Route exact path="/profile" element={<ProfilePage/>} />
+
           </Routes>
 
         </Router>

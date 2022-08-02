@@ -1,7 +1,11 @@
 import React from 'react'
+import { useState } from 'react';
 import "../css/profileIcon.scss"
+import {  useNavigate } from "react-router-dom"
 
 function ProfileIcon(props) {
+  const navigate = useNavigate()
+
   const { iconSize, storyBorder, image } = props;
 
   function getRandomInt(min, max) {
@@ -15,11 +19,12 @@ function ProfileIcon(props) {
   let profileImage = image ? image : `https://i.pravatar.cc/400?img==${randomId}`;
 
   return (
-    <div className={storyBorder ? "storyBorder" : ""}>
+    <div className={storyBorder ? "storyBorder" : ""} >
  
           <img className={`profileIcon ${iconSize}`}
             src={profileImage}
             alt="profile"
+       
           />
 
      

@@ -15,3 +15,9 @@
         margin-top: -1px;
     }
 }
+.dropdown-toggle::after {
+    display: none !important; 
+  }
+.nav-link{
+    padding: 0 !important;
+}

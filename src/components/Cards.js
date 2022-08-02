@@ -41,11 +41,11 @@ function Cards() {
        
           (  <Card
               key={post.id}
+              id={post.id}
               caption={post.data().caption}
               username={post.data().username}
               image={post.data().image}
               storyBorder={post.data().storyBorder}
-              comments={post.data().comments}
               likedByText={post.data().likedByText}
               likedByNumber={post.data().likedByNumber}
               hours={post.data().hours}
