@@ -1,0 +1,75 @@
+.ProfileDetailsWrapper {
+  display: flex;
+  align-items: center;
+  padding: 12px 20px;
+  margin-top: 10%;
+  .bloc{
+    margin-top: 2em;
+    align-items: baseline !important;
+
+    .ProName{
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+
+      .BtName{
+        font-size: xxx-large;
+      }
+
+      .BtName, .BtFollow, .BtPlus{
+        margin-right: 10px;
+      }
+      
+    }
+  }
+  .propImage {
+    display: block;
+    justify-content: center;
+    padding: 3em;
+
+    .profileIcon.big {
+      width: 200px !important;
+      height: 200px !important;
+
+    }
+
+  }
+
+  .ProfileStats {
+    margin-top: 1em;
+    margin-bottom: 1em;
+
+
+    display: flex;
+    justify-content: flex-start;
+
+    flex-basis: 60%;
+
+    .StatsBlock {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      margin-right: 2em;
+
+      .StatsNumber {
+        font-weight: 600;
+        font-size: 20px;
+      }
+
+      .StatsLabel {
+        margin-top: 5px;
+        text-transform: capitalize;
+        letter-spacing: 1px;
+        font-size: 14px;
+
+      }
+
+      span {
+        margin-right: 5px;
+      }
+    }
+
+
+  }
+
+}

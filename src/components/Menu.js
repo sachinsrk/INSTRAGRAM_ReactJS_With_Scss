@@ -32,7 +32,7 @@ function Menu() {
     <>
       {user ?
         <div className='menu'>
-          <Home className='icon' />
+          <Home className='icon' onClick={()=>navigate('/')} />
           <Inbox className='icon' />
           <New className='icon' onClick={() => setModalShow(true)} />
           <AddPost open={modalShow} onClose={() => setModalShow(false)} />

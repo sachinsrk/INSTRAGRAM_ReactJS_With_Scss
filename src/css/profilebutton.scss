@@ -1,0 +1,13 @@
+.ButtonWrapper{
+  padding: 25px 20px;
+
+  .ButtonRow{
+    display: flex;
+    :not(:last-child) {
+      margin-bottom: 8px;
+    }
+  }
+  
+}
+
+

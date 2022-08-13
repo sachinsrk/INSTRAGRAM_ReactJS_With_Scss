@@ -1,0 +1,26 @@
+.Wrapper {
+  display: flex;
+  padding: 0 20px;
+}
+
+.HighLightWrapper {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+margin-right: 2em;
+.HighLightImage {
+  max-width: 75px;
+  border-radius: 50%;
+  border: 1px solid #919191;
+  padding: 4px;
+}
+
+.HighLightLabel {
+  font-size: 12px;
+  white-space: nowrap;
+  margin-top: 6px;
+  text-align: center;
+}
+
+}
+

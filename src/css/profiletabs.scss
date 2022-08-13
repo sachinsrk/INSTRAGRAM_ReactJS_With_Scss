@@ -1,0 +1,37 @@
+@import "./properties";
+
+.TabsWrapper {
+  display: flex;
+  justify-content: space-between;
+  list-style: none;
+}
+.active{
+  padding: 35px 40px 16px;
+  width: 100%;
+  text-align: center;
+  border-bottom:2px solid $gradient-two;
+
+  cursor: pointer;
+  svg {
+      fill:  $gradient-two;
+      transform: scale(2);
+    }
+}
+.Tab-1, .Tab-2, .Tab-3, .Tab-4, .Tab-5 {
+  padding: 35px 40px 16px;
+  width: 100%;
+  cursor: pointer; 
+  text-align: center;
+ border-bottom: 1px solid #919191;
+ &:hover{
+    border-bottom:2px solid #919191
+    svg {
+        fill: #919191;
+      }
+  }
+
+  svg {
+    fill: #919191;
+    transform: scale(2);
+  }
+}

@@ -1,0 +1,11 @@
+.GridWrapper {
+    margin-top: 3px;
+    display: grid;
+    grid-gap: 1em;
+    justify-items: stretch;
+    grid-template-columns: repeat(3, 1fr);
+
+    img {
+        max-width: 100%;
+    }
+}
