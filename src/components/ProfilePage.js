@@ -23,13 +23,14 @@ const ProfilePage = () => {
         <>
             <header>
                 
+                <ProfileAbout />
                 <div className="container">
 
                     <div className="profilep">
 
                   
                             <div className="profile-image">
-                            <ProfileIcon
+                <ProfileAbout />
                                 iconSize={iconSize}
                                 storyBorder={storyBorder}
                                 image={image}
