@@ -14,10 +14,13 @@ import { async } from '@firebase/util';
 
 
 function AddPost(props) {
+
+  const context = useContext(thoughtContext)
+  const { addPost } = context
   const { open, onClose } = props
   const [image, setImage] = useState(null);
   const [caption, setCaption] = useState();
-  const [url, setURL] = useState("");
+  const [url, setURL] = useState()
 
   useEffect(() => {
     setImage('')
@@ -25,8 +28,6 @@ function AddPost(props) {
 
   }, [open])
 
-  const context = useContext(thoughtContext)
-  const { UserName } = context
   const handleChange = (e) => {
     if (e.target.files[0]) {
       setImage(e.target.files[0]);
@@ -38,53 +39,10 @@ function AddPost(props) {
   }
 
 
-  const handleUpload = () => {
+  const handleUpload = async () => {
     // upload image 
-
- 
-
-    const storageRef = ref(storage, `images/${image.name}`);
-    const uploadTask = uploadBytesResumable(storageRef, image)
-
-    uploadTask.on('state_changed',
-      (snapshot) => { },
-      (error) => {
-        switch (error.code) {
-          case 'storage/unauthorized':
-            alert("Unauthorize Access")
-            break;
-          case 'storage/canceled':
-            alert("User Cancelled Upload")
-            break;
-          case 'storage/unknown':
-            alert(" Unknown error occurred, inspect error.serverResponse")
-            break;
-        }
-      },
-      () => {
-        getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-          console.log('File available at', downloadURL);
-          setURL(downloadURL)
-          const data = {
-            timestamp: serverTimestamp(),
-            caption: caption?caption:'no cap',
-            comment: "this",
-            hours: 1,
-            image: downloadURL,
-            likedByNumber: 25,
-            likedByText: "hell",
-            storyBorder: true,
-            username: UserName
-          }
-          const rf = collection(db, "posts")
-          addDoc(rf, data).then(function () {
-            console.log(" created");
-            onClose()
-          });
-        });
-      }
-    );
-
+    await addPost(image, caption)
+    onClose()
   }
 
   return (
@@ -105,7 +63,7 @@ function AddPost(props) {
           {image ? <input type="text" onChange={handleOnChange} placeholder="caption" value={caption} /> : ''}
           <br></br>
           <br></br>
-          {image ? <Button onClick={ handleUpload}>Upload</Button> : ''}
+          {image ? <Button onClick={handleUpload}>Upload</Button> : ''}
         </ModalBody>
       </Modal>
 

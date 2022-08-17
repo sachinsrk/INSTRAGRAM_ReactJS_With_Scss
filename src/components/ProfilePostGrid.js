@@ -8,7 +8,7 @@ import thoughtContext from '../context/thought/thoughtContext';
 
 function ProfilePostGrid() {
   const context = useContext(thoughtContext);
-  const { user, UserName, setPostCount} = context
+  const { user, UserName, setPostCount, commentCount} = context
   const [posts, setPosts] = useState([]);
   const ref = query(collection(db, "posts"), orderBy("timestamp", "desc"), where("username", "==", `${UserName}`));
 
@@ -44,13 +44,11 @@ function ProfilePostGrid() {
           likedByText={post.data().likedByText}
           likedByNumber={post.data().likedByNumber}
           hours={post.data().hours}
+          CommentCount = {commentCount}
         />)
 
       ))
       }
-
-
-
     </div>
   )
 }
