@@ -1,6 +1,6 @@
-import React, { useContext, useEffect, useState } from "react";
-import { db } from "../config/db";
-import { collection, getDocs, onSnapshot, query, orderBy } from "@firebase/firestore";
+import React, { useContext, useEffect } from "react";
+// import { db } from "../config/db";
+// import { collection, getDocs, onSnapshot, query, orderBy } from "@firebase/firestore";
 
 import "../css/cards.scss";
 import Stories from "./Stories";

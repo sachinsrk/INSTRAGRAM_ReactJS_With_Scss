@@ -11,8 +11,7 @@ const ThoughtState = (props) => {
   const [UserName, setUserName] = useState();
   const [posts, setPosts] = useState([]);
   const [postCount, setPostCount] = useState(0);
-  const [comment, setComment] = useState()
-  const [comments, setComments] = useState([])
+ // const [comments, setComments] = useState([])
   const [commentCount, setCommentCount] = useState(0);
   const [likeCount, setLikeCount] = useState(0);
 
@@ -25,7 +24,27 @@ const ThoughtState = (props) => {
     }
 
   }, [user])
+  // add Comment 
 
+  const addComment = async (id, comment) => {
+    const colRef = collection(db, "posts", id, "comment");
+    const data = {
+      timestamp: serverTimestamp(),
+      text: comment,
+      username: UserName
+    }
+    addDoc(colRef, data)
+      .then(function () {
+        console.log("added");
+      }).catch((error) => {
+        console.log(error)
+        alert(error.message)
+      });
+  }
+  // get comment 
+  // const getComment = async (id) => {
+
+  // }
   // get post
   const getPost = async () => {
     const ref = query(collection(db, "posts"), orderBy("timestamp", "desc"));
@@ -90,7 +109,7 @@ const ThoughtState = (props) => {
 
   }
   return (
-    <ThoughtContext.Provider value={{ addPost, getPost, posts, setPosts, comment, setComment, comments, setComments, user, setUser, UserName, activeTab, setActiveTab, postCount, setPostCount, commentCount, setCommentCount, likeCount, setLikeCount }}>
+    <ThoughtContext.Provider value={{ addPost, getPost, posts, setPosts, addComment, user, setUser, UserName, activeTab, setActiveTab, postCount, setPostCount, commentCount, setCommentCount, likeCount, setLikeCount }}>
       {props.children}
     </ThoughtContext.Provider>
   )

@@ -7,13 +7,14 @@ import { ReactComponent as CardButton } from "../img/dot.svg";
 import { useState } from "react";
 import { useEffect } from "react";
 import { db } from "../config/db";
-import { addDoc, collection, doc, getDocs, onSnapshot, serverTimestamp } from "firebase/firestore";
+import { addDoc, collection, doc, getDocs, onSnapshot, orderBy, query, serverTimestamp } from "firebase/firestore";
 import { useContext } from "react";
 import thoughtContext from "../context/thought/thoughtContext";
+import { getDropdownMenuPlacement } from "react-bootstrap/esm/DropdownMenu";
 
 function Card(props) {
   const context = useContext(thoughtContext);
-  const { UserName } = context;
+  const { addComment } = context;
   const {
     id,
     caption,
@@ -26,8 +27,8 @@ function Card(props) {
   } = props;
   const [comment, setComment] = useState()
   const [comments, setComments] = useState([])
-  const colRef = collection(db, "posts", id, "comment");
-
+  const colRef = query(collection(db, "posts", id, "comment"), orderBy("timestamp"));;
+ 
   useEffect(() => {
     onSnapshot(colRef, (q) => {
       const post = [];
@@ -40,21 +41,9 @@ function Card(props) {
     });
   }, []);
 
-  const addComment = () => {
-
-    const data = {
-      timestamp: serverTimestamp(),
-      text: comment,
-      username: UserName
-    }
-    addDoc(colRef, data)
-      .then(function () {
-        setComment('')
-        console.log("added");
-      }).catch((error) => {
-        console.log(error)
-        alert(error.message)
-      });
+  const addcomment = async () => {
+    await addComment(id, comment)
+    setComment('')
   }
 
   return (
@@ -103,7 +92,7 @@ function Card(props) {
 
         </input>
         {comment ?
-          <div className="postText" onClick={addComment} style={{ color: '#0095f6' }}>Post</div> :
+          <div className="postText" onClick={addcomment} style={{ color: '#0095f6' }}>Post</div> :
           <div className="postText">Post</div>
         }
 
