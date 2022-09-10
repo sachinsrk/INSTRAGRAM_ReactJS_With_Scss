@@ -6,15 +6,17 @@ import Profile from "./Profile";
 import { ReactComponent as CardButton } from "../img/dot.svg";
 import { useState } from "react";
 import { useEffect } from "react";
-import { db } from "../config/db";
-import { addDoc, collection, doc, getDocs, onSnapshot, orderBy, query, serverTimestamp } from "firebase/firestore";
+import { db, auth, storage } from "../config/db";
+import { addDoc, collection, doc, getDocs, onSnapshot, orderBy, query, serverTimestamp, where } from "firebase/firestore";
 import { useContext } from "react";
 import thoughtContext from "../context/thought/thoughtContext";
-import { getDropdownMenuPlacement } from "react-bootstrap/esm/DropdownMenu";
+import { getAuth } from "firebase/auth";
+
 
 function Card(props) {
   const context = useContext(thoughtContext);
   const { addComment } = context;
+  const [ProfileImageLink, setProfileImageLink] = useState()
   const {
     id,
     caption,
@@ -24,11 +26,13 @@ function Card(props) {
     likedByText,
     likedByNumber,
     hours,
+    uid
   } = props;
+
   const [comment, setComment] = useState()
   const [comments, setComments] = useState([])
   const colRef = query(collection(db, "posts", id, "comment"), orderBy("timestamp"));;
- 
+
   useEffect(() => {
     onSnapshot(colRef, (q) => {
       const post = [];

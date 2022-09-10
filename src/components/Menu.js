@@ -7,7 +7,7 @@ import { ReactComponent as Inbox } from "../img/chat.svg"
 import { ReactComponent as Explore } from "../img/find.svg"
 import { ReactComponent as Notification } from "../img/notification.svg"
 import ProfileIcon from "./ProfileIcon.js"
-import image from "../img/prop.jpg"
+import scLogo from "../img/scLogo.jpg"
 import AddPost from './AddPost'
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { auth } from '../config/db';
@@ -21,7 +21,7 @@ function Menu() {
   const navigate = useNavigate();
   const [modalShow, setModalShow] = useState(false);
   const context = useContext(thoughtContext)
-  const { user } = context
+  const { user, UserProfileUrl } = context
 
   const singout = async (e) => {
     e.preventDefault();
@@ -32,7 +32,7 @@ function Menu() {
     <>
       {user ?
         <div className='menu'>
-          <Home className='icon' onClick={()=>navigate('/')} />
+          <Home className='icon' onClick={() => navigate('/')} />
           <Inbox className='icon' />
           <New className='icon' onClick={() => setModalShow(true)} />
           <AddPost open={modalShow} onClose={() => setModalShow(false)} />
@@ -41,9 +41,9 @@ function Menu() {
           <Notification className='icon' />
           <NavDropdown
             id="nav-dropdown"
-            title={<ProfileIcon iconSize="small" image={image} />}
+            title={<ProfileIcon iconSize="small" image={UserProfileUrl?UserProfileUrl:scLogo} />}
           >
-            <NavDropdown.Item onClick={()=>navigate('/profile')}>
+            <NavDropdown.Item onClick={() => navigate('/profile')}>
               Profile
             </NavDropdown.Item>
             <NavDropdown.Item onClick={singout}>

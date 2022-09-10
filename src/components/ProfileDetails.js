@@ -1,13 +1,13 @@
 import React, { useContext } from 'react'
 import "../css/profiledetails.scss"
 import ProfileAbout from './ProfileAbout';
-import scLogo from "../img/prop.jpg"
+import scLogo from "../img/scLogo.jpg"
 import ProfileIcon from './ProfileIcon';
 import Button from 'react-bootstrap/esm/Button';
 import thoughtContext from '../context/thought/thoughtContext';
 function ProfileDetails() {
   const context = useContext(thoughtContext)
-  const {UserName, postCount} = context
+  const { UserName, postCount, UserProfileUrl } = context
   return (
     <div>
       {/* <img className="ProfileImage" src={scLogo} /> */}
@@ -16,7 +16,7 @@ function ProfileDetails() {
           <ProfileIcon
             iconSize="big"
             storyBorder={true}
-            image={scLogo}
+            image={UserProfileUrl ? UserProfileUrl : scLogo}
           />
         </div>
 

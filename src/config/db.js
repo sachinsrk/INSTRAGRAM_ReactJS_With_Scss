@@ -1,11 +1,9 @@
-import {initializeApp} from "firebase/app";
-
-import { getFirestore} from "@firebase/firestore"
+import { initializeApp } from "firebase/app";
+import { getFirestore } from "@firebase/firestore"
 import { getStorage } from "@firebase/storage";
 import { getAuth } from "@firebase/auth";
 
-
-const firebaseApp =  ({
+const firebaseApp = ({
     // For Firebase JS SDK v7.20.0 and later, measurementId is optional
     apiKey: "AIzaSyA0cJdIRb47IFR82QC35Zl52qBBxWyL1dQ",
     authDomain: "instragram-clone-2fc18.firebaseapp.com",
@@ -24,4 +22,4 @@ const storage = getStorage(app);
 
 
 
-export  {db , auth ,storage}
+export { db, auth, storage }

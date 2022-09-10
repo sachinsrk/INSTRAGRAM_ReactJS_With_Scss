@@ -1,36 +1,50 @@
 import React, { useContext } from 'react'
-import { Form, Button, Row, Col, Card } from 'react-bootstrap';
+import { Form, Button, Row, Col, Card, Image } from 'react-bootstrap';
 import '../css/signup.scss'
 import { Link } from "react-router-dom"
-import { db, auth } from "../config/db";
+import { db, auth, storage } from "../config/db";
 import { createUserWithEmailAndPassword, onAuthStateChanged, updateProfile } from '@firebase/auth';
 import { useState } from 'react';
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import thoughtContext from '../context/thought/thoughtContext';
+import ProImage from "../img/add-photo.png"
+import { ref, uploadBytes, getDownloadURL, uploadBytesResumable } from "firebase/storage";
+import { addDoc, collection } from 'firebase/firestore';
+
 
 
 const Signup = () => {
     const context = useContext(thoughtContext)
-    const {user, setUser} = context; 
+    const { user, setUser } = context;
     const navigate = useNavigate()
     const [username, setUsername] = useState()
     const [email, setEmail] = useState()
     const [password, setPassword] = useState()
-// check user
-    useEffect(()=>{
-        if(user){
+    const [image, setImage] = useState(null);
+    const [tempUrl, setTempURL] = useState()
+
+    // image change
+    const handleChange = (e) => {
+        if (e.target.files[0]) {
+            setImage(e.target.files[0]);
+            setTempURL(URL.createObjectURL(e.target.files[0]))
+        }
+    }
+    // check user
+    useEffect(() => {
+        if (user) {
             navigate("/")
         }
-    },[user])
-// 
+    }, [user])
+    // 
     useEffect(() => {
-      const unsub =  onAuthStateChanged(auth, (authUser) => {
+        const unsub = onAuthStateChanged(auth, (authUser) => {
             if (authUser) {
                 console.log(authUser)
                 setUser(authUser);
 
-           
+
             } else {
                 setUser(null)
             }
@@ -39,23 +53,62 @@ const Signup = () => {
         return () => {
             unsub();
         }
-       
+
     }, [user, username])
-    const signUp = async(e) => {
+    const signUp = async (e) => {
         e.preventDefault();
 
+        const storageRef = ref(storage, `images/${image.name}`);
+        const uploadTask = uploadBytesResumable(storageRef, image)
+        // upload image 
+        uploadTask.on('state_changed',
+            (snapshot) => { },
+            (error) => {
+                switch (error.code) {
+                    case 'storage/unauthorized':
+                        alert("Unauthorize Access")
+                        break;
+                    case 'storage/canceled':
+                        alert("User Cancelled Upload")
+                        break;
+                    case 'storage/unknown':
+                        alert(" Unknown error occurred, inspect error.serverResponse")
+                        break;
+                }
+            },
+            () => {
+                // download and assign post 
+                getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+                    console.log('File available at', downloadURL);
+                    createUserWithEmailAndPassword(auth, email, password)
+                        .then((authUser) => {
+                            updateProfile(authUser.user, {
+                                displayName: username
+                            })
+                            const data = {
+                                displayName: username,
+                                gmailID: email,
+                                password: password,
+                                photoURL: downloadURL
+                            }
+                            const rf = collection(db, "users")
+                            // add post on collection
+                            addDoc(rf, data).then(function () {
+                                console.log(" created user");
+                                navigate('/')
+                            });
 
-       await createUserWithEmailAndPassword(auth, email, password)
-            .then((authUser)=>{
-                updateProfile(authUser.user, {
-                    displayName: username
-                })
-                // navigate("/");
-            })
-            .catch((error) => {
-                console.log(error)
-                alert(error.message)
-            })
+                        })
+                        .catch((error) => {
+                            console.log(error)
+                            alert(error.message)
+                        })
+                });
+            }
+        );
+
+
+
     }
     return (
         <>
@@ -73,6 +126,17 @@ const Signup = () => {
                             </center>
                         </div>
                         <Form>
+                            <Form.Group as={Row} className="mb-3 text-black-50" controlId="formPlaintextEmail">
+
+                                <div className='profile-image'>
+                                    {tempUrl ?
+                                        <Form.Label for="file" id="this" ><Image className='img' src={tempUrl} /></Form.Label>
+                                        :
+                                        <Form.Label for="file" id="this" class="lab"><Image className='img' src={ProImage} /></Form.Label>
+                                    }
+                                    <Form.Control type="file" onChange={handleChange} id="file" hidden />
+                                </div>
+                            </Form.Group>
                             <Form.Group as={Row} className="mb-3 text-black-50" controlId="formPlaintextEmail">
                                 <Form.Label column   >
                                     UserName

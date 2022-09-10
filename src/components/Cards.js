@@ -36,6 +36,7 @@ function Cards() {
           likedByText={post.data().likedByText}
           likedByNumber={post.data().likedByNumber}
           hours={post.data().hours}
+          uid={post.data().uid}
         />)
 
       ))

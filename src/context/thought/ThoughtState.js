@@ -3,28 +3,55 @@ import ThoughtContext from "./thoughtContext";
 import { db, auth, storage } from "../../config/db";
 import { useEffect } from "react";
 import { ref, uploadBytes, getDownloadURL, uploadBytesResumable } from "firebase/storage";
-import { collection, addDoc, FieldValue, serverTimestamp, onSnapshot, orderBy, query } from "firebase/firestore";
+import { collection, addDoc, FieldValue, serverTimestamp, onSnapshot, orderBy, query, where } from "firebase/firestore";
+import { async } from "@firebase/util";
 const ThoughtState = (props) => {
   const [user, setUser] = useState(null)
   const [activeTab, setActiveTab] = useState("Tab-1")
   const Cu_user = auth.currentUser;
+  const [userID, setUserID] = useState()
   const [UserName, setUserName] = useState();
+  const [UserProfile, setUserProfile] = useState([]);
+  const [UserProfileUrl, setUserProfileUrl] = useState();
+
   const [posts, setPosts] = useState([]);
   const [postCount, setPostCount] = useState(0);
- // const [comments, setComments] = useState([])
+  // const [comments, setComments] = useState([])
   const [commentCount, setCommentCount] = useState(0);
   const [likeCount, setLikeCount] = useState(0);
 
   useEffect(() => {
     if (Cu_user !== null) {
       setUserName(Cu_user.displayName);
-
     } else {
       setUserName("newUser")
     }
 
   }, [user])
+
+  useEffect(() => {
+    const ref = query(collection(db, "users"), where("displayName", "==", `${UserName}`));
+    console.log("enter")    //set item on posts
+    const getPro = async () => {
+      onSnapshot(ref, (q) => {
+        const post = [];
+          q.forEach((doc) => {
+          // push item on 
+          console.log("enter loop")
+          post.push(doc.id);
+          console.log(doc.id)
+          setUserID(doc.id);
+          setUserProfileUrl(doc.data().photoURL)
+          console.log(doc.data())
+        });
+        console.log(UserProfileUrl)
+        //set item on posts
+      });
+    }
+    getPro();
+  }, [UserName])
   // add Comment 
+
 
   const addComment = async (id, comment) => {
     const colRef = collection(db, "posts", id, "comment");
@@ -96,7 +123,8 @@ const ThoughtState = (props) => {
             likedByNumber: 25,
             likedByText: "hell",
             storyBorder: true,
-            username: UserName
+            username: UserName,
+            uid: userID
           }
           const rf = collection(db, "posts")
           // add post on collection
@@ -109,7 +137,7 @@ const ThoughtState = (props) => {
 
   }
   return (
-    <ThoughtContext.Provider value={{ addPost, getPost, posts, setPosts, addComment, user, setUser, UserName, activeTab, setActiveTab, postCount, setPostCount, commentCount, setCommentCount, likeCount, setLikeCount }}>
+    <ThoughtContext.Provider value={{ UserProfile, addPost, getPost, posts, setPosts, addComment, user, setUser, UserName, UserProfileUrl, activeTab, setActiveTab, postCount, setPostCount, commentCount, setCommentCount, likeCount, setLikeCount }}>
       {props.children}
     </ThoughtContext.Provider>
   )
