@@ -44,6 +44,9 @@ function Card(props) {
       setComments(post)
     });
   }, []);
+const likeCount = async()=>{
+  
+}
 
   const addcomment = async () => {
     await addComment(id, comment)

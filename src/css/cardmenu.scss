@@ -1,5 +1,7 @@
 @import "./properties";
-
+.MuiSvgIcon-root{
+    font-size: 1.8rem !important;
+}
 .cardMenu{
     display: flex;
     justify-content: space-between;
@@ -11,7 +13,7 @@
     }
 
     .icon{
-        margin-right: 1em;
+        margin-right: 1em !important;
         width: 23px;
         height: 23px;
 

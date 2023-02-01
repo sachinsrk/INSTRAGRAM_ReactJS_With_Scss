@@ -16,7 +16,7 @@ const ThoughtState = (props) => {
 
   const [posts, setPosts] = useState([]);
   const [postCount, setPostCount] = useState(0);
-  // const [comments, setComments] = useState([])
+  // const [comments, setComments] = useState([])apophis
   const [commentCount, setCommentCount] = useState(0);
   const [likeCount, setLikeCount] = useState(0);
 
@@ -120,7 +120,7 @@ const ThoughtState = (props) => {
             comment: "this",
             hours: 1,
             image: downloadURL,
-            likedByNumber: 25,
+            likedByNumber: 0,
             likedByText: "hell",
             storyBorder: true,
             username: UserName,
